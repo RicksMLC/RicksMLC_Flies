@@ -1,0 +1,8 @@
+-- Rick's MLC Flies
+
+Sandbox_ES = {
+    Sandbox_RicksMLC_Flies = "Rick's MLC Moscas",
+
+    Sandbox_RicksMLC_Flies_DirtyLevel = "Nivel sucio",
+    Sandbox_RicksMLC_Flies_DirtyLevel_tooltip = "¿Qué tan desordenado puedes soportar?  Si te gustan las hachas, al parecer el valor por defecto no es suficiente...",
+}

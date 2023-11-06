@@ -1,0 +1,8 @@
+name=Rick's MLC Greenport Secrets
+poster=poster.png
+id=RicksMLC_GreenportSecrets
+description= A Greenport FanFic Annotated Map Project <LINE>
+description= <LINE>
+description= Adds Annotated Maps to the secrets at Greenport - Requires Greenport Map.
+url=
+require=Greenport

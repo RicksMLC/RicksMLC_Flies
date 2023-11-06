@@ -1,0 +1,8 @@
+-- Encoding: UTF-8
+
+Stash_EN = {
+    Stash_RicksMLC_Map01_Text1 = "Trevor, this is NOT regulation fishing gear!",
+
+    Stash_RicksMLC_Map02_Text1 = "I kept these for emergencies!",
+    Stash_RicksMLC_Map02_Text2 = "We really need them now more than ever!",
+},

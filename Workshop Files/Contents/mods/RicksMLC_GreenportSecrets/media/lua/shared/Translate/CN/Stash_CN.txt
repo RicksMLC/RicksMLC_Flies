@@ -1,0 +1,9 @@
+-- Rick's MLC Template
+-- Encoding Chinese Simplified - UTF-8
+
+Stash_CN {
+	Stash_RicksMLC_Map01_Text1 = "特雷弗，这不是规定渔具！",
+	
+	Stash_RicksMLC_Map02_Text1 = "我保留了这些以备不时之需！",
+    Stash_RicksMLC_Map02_Text2 = "我们现在比以往任何时候都更需要它们！",
+},

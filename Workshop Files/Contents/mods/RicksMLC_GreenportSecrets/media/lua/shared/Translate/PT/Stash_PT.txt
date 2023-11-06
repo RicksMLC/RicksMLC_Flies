@@ -1,0 +1,9 @@
+-- Rick's MLC Concussion
+-- Encoding: ANSI
+
+Stash_PT = {
+    Stash_RicksMLC_Map01_Text1 = "Trevor, isso NÃO é arte de pesca regulamentar!",
+	
+	Stash_RicksMLC_Map02_Text1 = "Guardei-os para emergências!",
+    Stash_RicksMLC_Map02_Text2 = "Precisamos deles agora mais do que nunca!",
+}

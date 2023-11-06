@@ -1,0 +1,9 @@
+-- Rick's MLC Template
+-- Encoding: ANSI
+
+Stash_ES {
+	Stash_RicksMLC_Map01_Text1 = "Trevor, ¡esto NO es un equipo de pesca reglamentario!",
+	
+	Stash_RicksMLC_Map02_Text1 = "¡Los guardé para emergencias!",
+    Stash_RicksMLC_Map02_Text2 = "¡Realmente los necesitamos ahora más que nunca!",
+},

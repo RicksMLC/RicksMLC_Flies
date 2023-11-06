@@ -1,0 +1,74 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "RELEASE: Copy mod to Workshop for release",
+            "type": "shell",
+            "command": "xcopy",
+            "args": [
+<<<<<<< HEAD
+                "${env:USERPROFILE}\\Documents\\Ricks Mid Life Crisis\\ProjectZomboid Mods\\RicksMLC_Flies\\Workshop Files",
+                "${env:USERPROFILE}\\Zomboid\\Workshop\\RicksMLC_Flies\\",
+=======
+                "${env:USERPROFILE}\\Documents\\Ricks Mid Life Crisis\\ProjectZomboid Mods\\RicksMLC_GreenportSecrets\\Workshop Files",
+                "${env:USERPROFILE}\\Zomboid\\Workshop\\RicksMLC_GreenportSecrets\\",
+>>>>>>> 5b79f950657d5ba83a1d88b96ac53b6db898e211
+                "/s",
+                "/e",
+                "/y",
+                "/d",
+                "/exclude:.vscode\\exclude.txt"
+            ],
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+
+        {
+            "label": "CLEAN: Delete test from mod Workshop",
+            "type": "shell",
+            "command": "del",
+            "args": [
+<<<<<<< HEAD
+                "${env:USERPROFILE}\\Zomboid\\Workshop\\RicksMLC_Flies\\Contents\\mods\\RicksMLC_Flies\\media\\lua\\client\\Tests"
+=======
+                "${env:USERPROFILE}\\Zomboid\\Workshop\\RicksMLC_GreenportSecrets\\Contents\\mods\\RicksMLC_GreenportSecrets\\media\\lua\\client\\Tests"
+>>>>>>> 5b79f950657d5ba83a1d88b96ac53b6db898e211
+            ],
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            }
+        },
+
+        // Copy for test
+        {
+            "label": "TEST: Copy Test lua Workshop for test",
+            "type": "shell",
+            "command": "xcopy",
+            "args": [
+<<<<<<< HEAD
+                "${env:USERPROFILE}\\Documents\\Ricks Mid Life Crisis\\ProjectZomboid Mods\\RicksMLC_Flies\\Workshop Files",
+                "${env:USERPROFILE}\\Zomboid\\Workshop\\RicksMLC_Flies",
+=======
+                "${env:USERPROFILE}\\Documents\\Ricks Mid Life Crisis\\ProjectZomboid Mods\\RicksMLC_GreenportSecrets\\Workshop Files",
+                "${env:USERPROFILE}\\Zomboid\\Workshop\\RicksMLC_GreenportSecrets",
+>>>>>>> 5b79f950657d5ba83a1d88b96ac53b6db898e211
+                "/s",
+                "/e",
+                "/y",
+                "/d"
+            ],
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            }
+        }
+    ]
+}
