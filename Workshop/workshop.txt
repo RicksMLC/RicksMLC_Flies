@@ -1,0 +1,9 @@
+version=0.4
+title=Rick's MLC Flies (TEST)
+description= Sort of the opposite of a Quality Of Life mod.
+description= These damn flies ...
+description=
+description= Many thanks to @Odzmaker for the inspiration for this mod.
+description= Also a Big Thank You to Cruel Moose, Khontak and the Chatters from NoMisPlays for their assistance in testing this mod.
+tags=Build 41
+visibility=public
