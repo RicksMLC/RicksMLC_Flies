@@ -1,0 +1,9 @@
+-- Rick's MLC Flies
+-- Chinese Simplified Translation - UTF-8
+
+Sandbox_CN = {
+    Sandbox_RicksMLC_Flies = "Rick's MLC 苍蝇",
+
+    Sandbox_RicksMLC_Flies_DirtyLevel = "脏污级别",
+    Sandbox_RicksMLC_Flies_DirtyLevel_tooltip = "你能忍受多乱？ 如果你喜欢轴，显然默认是不够的...",
+}

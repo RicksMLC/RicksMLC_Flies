@@ -97,7 +97,7 @@ function RicksMLC_Flies.HideFlies(playerId)
     if isClient() then
         -- Check if another player has flies on this square before removing them.
         for checkPlayerId, fliesInfo in pairs(RicksMLC_Flies.currentFliesSquareList) do
-            -- DebugLog.log(DebugType.Mod, "RicksMLC_Flies.ClearFliesFromList() checkPlayerId: " .. tostring(checkPlayerId) .. " playeId: " .. tostring(playerId))
+            DebugLog.log(DebugType.Mod, "RicksMLC_Flies.ClearFliesFromList() checkPlayerId: " .. tostring(checkPlayerId) .. " playeId: " .. tostring(playerId))
             if checkPlayerId ~= playerId and fliesInfo then
                 local square = fliesInfo:GetSquareIfValid()
                 if square and square == playerSquare then
@@ -119,7 +119,7 @@ function RicksMLC_Flies.ClearFliesFromList(playerId)
         -- Check if another player has flies on this square before removing them.
         local playerClearSquare = RicksMLC_Flies.currentFliesSquareList[playerId]:GetSquare()
         for checkPlayerId, playerSquare in pairs(RicksMLC_Flies.currentFliesSquareList) do
-            -- DebugLog.log(DebugType.Mod, "RicksMLC_Flies.ClearFliesFromList() checkPlayerId: " .. tostring(checkPlayerId) .. " playeId: " .. tostring(playerId))
+            DebugLog.log(DebugType.Mod, "RicksMLC_Flies.ClearFliesFromList() checkPlayerId: " .. tostring(checkPlayerId) .. " playeId: " .. tostring(playerId))
             if checkPlayerId ~= playerId and playerSquare then
                 square = RicksMLC_Flies.GetCurrentFliesSquare(checkPlayerId)
                 if square and square == playerClearSquare then
@@ -245,15 +245,15 @@ function RicksMLC_Flies.UpdateFlies(player, playerID, fliesOn)
 end
 
 function RicksMLC_Flies.SendUpdateSmellToServer()
-    -- DebugLog.log(DebugType.Mod, "RicksMLC_Flies.SendUpdateSmellToServer() FliesOn: " .. tostring(RicksMLC_Flies.FliesOn))
+    DebugLog.log(DebugType.Mod, "RicksMLC_Flies.SendUpdateSmellToServer() FliesOn: " .. tostring(RicksMLC_Flies.FliesOn))
     local args = {FliesOn = RicksMLC_Flies.FliesOn, OnlineId = getPlayer():getOnlineID()}
     sendClientCommand("RicksMLC_FliesServer", "UpdateSmell", args)
 end
 
 function RicksMLC_Flies.HandleServerSmellUpdate(module, command, args)
     if module == "RicksMLC_Flies" and command == "UpdateSmellFromServer" then
-        -- DebugLog.log(DebugType.Mod, "RicksMLC_Flies.HandleClientSmellUpdate()")
-        -- RicksMLC_SharedUtils.DumpArgs(args, 0, "Server smell args")
+        DebugLog.log(DebugType.Mod, "RicksMLC_Flies.HandleClientSmellUpdate()")
+        RicksMLC_SharedUtils.DumpArgs(args, 0, "Server smell args")
         for onlineId, playerFliesOn in pairs(args.PlayerFliesList) do
             -- Only process other player's flies
             if getPlayer():getOnlineID() ~= onlineId then
@@ -310,7 +310,7 @@ function RicksMLC_Flies.ShowOtherPlayersFlies()
             if droppedPlayerList[player:getOnlineID()] then droppedPlayerList[player:getOnlineID()] = nil end
             if player ~= getPlayer() then
                 if RicksMLC_Flies.currentFliesSquareList[player:getOnlineID()] == nil then
-                    -- DebugLog.log(DebugType.Mod, "RicksMLC_Flies.ShowOtherPlayersFlies() New player detected - request flies from server")
+                    DebugLog.log(DebugType.Mod, "RicksMLC_Flies.ShowOtherPlayersFlies() New player detected - request flies from server")
                     requestFliesStatusFromServer = true
                 else
                     RicksMLC_Flies.UpdateFlies(player, player:getOnlineID(), RicksMLC_Flies.currentFliesSquareList[player:getOnlineID()]:HasFlies())
@@ -355,7 +355,7 @@ end
 function RicksMLC_Flies.OnCreatePlayer(playerIndex, player)
     RicksMLC_Flies.ClearAllFliesFromList()
     local onlineId = player:getOnlineID()
-    -- DebugLog.log(DebugType.Mod, "RicksMLC_Flies.OnCreatePlayer OnlineId: '" .. tostring(onlineId) .. "'")
+    DebugLog.log(DebugType.Mod, "RicksMLC_Flies.OnCreatePlayer OnlineId: '" .. tostring(onlineId) .. "'")
     RicksMLC_Flies.currentFliesSquareList[player:getOnlineID()] = FliesInfo:new(player:getCurrentSquare())
 end
 

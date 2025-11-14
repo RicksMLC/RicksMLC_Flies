@@ -1,0 +1,11 @@
+VERSION = 1,
+
+option RicksMLC_Flies.DirtyLevel
+{
+	type = integer,
+	default = 70,
+	min = 0,
+	max = 2000,
+	page = RicksMLC_Flies,
+	translation = RicksMLC_Flies_DirtyLevel,
+}
