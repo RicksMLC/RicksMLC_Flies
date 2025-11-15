@@ -1,10 +1,11 @@
 version=0.4
-title=Rick's MLC Flies (TEST)
+title=Rick's MLC Flies
 description= Sort of the opposite of a Quality Of Life mod.
 description= These damn flies ...
 description=
 description= Many thanks to @Odzmaker for the inspiration for this mod.
 description= Also a Big Thank You to Cruel Moose, Khontak and the Chatters from NoMisPlays for their assistance in testing this mod.
 description= Many thanks to @sayla and crew for testing the multiplayer version to confirm that one person's flies is everyone's problem.
+description= Big thanks to @SIMBAproduz for the Brazilian Portuguese translation.
 tags=Build 41,Build 42
 visibility=public

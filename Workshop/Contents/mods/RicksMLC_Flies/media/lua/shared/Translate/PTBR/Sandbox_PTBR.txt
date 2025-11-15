@@ -1,0 +1,9 @@
+-- Rick's MLC Flies
+-- Encoding: UTF-8
+
+Sandbox_PTBR = {
+    Sandbox_RicksMLC_Flies = "Rick's MLC Flies",
+
+    Sandbox_RicksMLC_Flies_DirtyLevel = "Nível de Sujeira",
+    Sandbox_RicksMLC_Flies_DirtyLevel_tooltip = "Qual é o seu limite para a bagunça? Se você gosta de desafios, o padrão talvez não seja suficiente...",
+}

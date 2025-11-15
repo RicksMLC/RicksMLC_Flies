@@ -19,7 +19,7 @@ function RicksMLC_FliesServer.HandleClientSmellUpdate(module, command, player, a
         if RicksMLC_FliesServer.CurrentFliesStatus ~= {} then
             local retArgs = {PlayerFliesList = RicksMLC_FliesServer.CurrentFliesStatus}
             sendServerCommand("RicksMLC_Flies", "UpdateSmellFromServer", retArgs)
-            RicksMLC_SharedUtils.DumpArgs(retArgs, 0, "RicksMLC_Flies: UpdateSmellFromServer retArgs")
+            --RicksMLC_SharedUtils.DumpArgs(retArgs, 0, "RicksMLC_Flies: UpdateSmellFromServer retArgs")
         else
             --DebugLog.log(DebugType.Mod, "RicksMLC_FliesServer.HandleClientSmellUpdate: No current flies status - not sending reply")
         end

@@ -1,4 +1,5 @@
 -- Rick's MLC Flies
+-- Encoding: ANSI
 
 Sandbox_PT = {
     Sandbox_RicksMLC_Flies = "Rick's MLC Moscas",
