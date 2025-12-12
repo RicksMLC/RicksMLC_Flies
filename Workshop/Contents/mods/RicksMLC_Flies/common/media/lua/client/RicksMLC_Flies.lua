@@ -245,15 +245,15 @@ function RicksMLC_Flies.UpdateFlies(player, playerID, fliesOn)
 end
 
 function RicksMLC_Flies.SendUpdateSmellToServer()
-    DebugLog.log(DebugType.Mod, "RicksMLC_Flies.SendUpdateSmellToServer() FliesOn: " .. tostring(RicksMLC_Flies.FliesOn))
+    --DebugLog.log(DebugType.Mod, "RicksMLC_Flies.SendUpdateSmellToServer() FliesOn: " .. tostring(RicksMLC_Flies.FliesOn))
     local args = {FliesOn = RicksMLC_Flies.FliesOn, OnlineId = getPlayer():getOnlineID()}
     sendClientCommand("RicksMLC_FliesServer", "UpdateSmell", args)
 end
 
 function RicksMLC_Flies.HandleServerSmellUpdate(module, command, args)
     if module == "RicksMLC_Flies" and command == "UpdateSmellFromServer" then
-        DebugLog.log(DebugType.Mod, "RicksMLC_Flies.HandleClientSmellUpdate()")
-        RicksMLC_SharedUtils.DumpArgs(args, 0, "Server smell args")
+        --DebugLog.log(DebugType.Mod, "RicksMLC_Flies.HandleClientSmellUpdate()")
+        --RicksMLC_SharedUtils.DumpArgs(args, 0, "Server smell args")
         for onlineId, playerFliesOn in pairs(args.PlayerFliesList) do
             -- Only process other player's flies
             if getPlayer():getOnlineID() ~= onlineId then
@@ -269,10 +269,14 @@ function RicksMLC_Flies.HandleServerSmellUpdate(module, command, args)
     end
 end
 
-function RicksMLC_Flies.UpdateFliesOnStatus()
+function RicksMLC_Flies.CalculateFliesOnStatus()
     local clothingSmell = RicksMLC_Flies.CalcClothingSmell(getPlayer())
     local bodySmell = RicksMLC_Flies.CalcBodySmell(getPlayer())
-    local newFliesOnStatus = clothingSmell >= RicksMLC_Flies.TriggerDirtBloodLevel or bodySmell >= RicksMLC_Flies.TriggerDirtBloodLevel
+    return clothingSmell >= RicksMLC_Flies.TriggerDirtBloodLevel or bodySmell >= RicksMLC_Flies.TriggerDirtBloodLevel
+end
+
+function RicksMLC_Flies.UpdateFliesOnStatus()
+    local newFliesOnStatus = RicksMLC_Flies.CalculateFliesOnStatus()
     if RicksMLC_Flies.FliesOn ~= newFliesOnStatus then
         RicksMLC_Flies.FliesOn = newFliesOnStatus
         return true
