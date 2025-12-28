@@ -97,7 +97,7 @@ function RicksMLC_Flies.HideFlies(playerId)
     if isClient() then
         -- Check if another player has flies on this square before removing them.
         for checkPlayerId, fliesInfo in pairs(RicksMLC_Flies.currentFliesSquareList) do
-            DebugLog.log(DebugType.Mod, "RicksMLC_Flies.ClearFliesFromList() checkPlayerId: " .. tostring(checkPlayerId) .. " playeId: " .. tostring(playerId))
+            --DebugLog.log(DebugType.Mod, "RicksMLC_Flies.ClearFliesFromList() checkPlayerId: " .. tostring(checkPlayerId) .. " playeId: " .. tostring(playerId))
             if checkPlayerId ~= playerId and fliesInfo then
                 local square = fliesInfo:GetSquareIfValid()
                 if square and square == playerSquare then
@@ -119,7 +119,7 @@ function RicksMLC_Flies.ClearFliesFromList(playerId)
         -- Check if another player has flies on this square before removing them.
         local playerClearSquare = RicksMLC_Flies.currentFliesSquareList[playerId]:GetSquare()
         for checkPlayerId, playerSquare in pairs(RicksMLC_Flies.currentFliesSquareList) do
-            DebugLog.log(DebugType.Mod, "RicksMLC_Flies.ClearFliesFromList() checkPlayerId: " .. tostring(checkPlayerId) .. " playeId: " .. tostring(playerId))
+            --DebugLog.log(DebugType.Mod, "RicksMLC_Flies.ClearFliesFromList() checkPlayerId: " .. tostring(checkPlayerId) .. " playeId: " .. tostring(playerId))
             if checkPlayerId ~= playerId and playerSquare then
                 square = RicksMLC_Flies.GetCurrentFliesSquare(checkPlayerId)
                 if square and square == playerClearSquare then
