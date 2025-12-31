@@ -190,13 +190,6 @@ end
 
 RicksMLC_Flies.soundHandle = 0
 RicksMLC_Flies.soundEmitter = nil
-RicksMLC_Flies.volumeAdjustment = 0.5
-function RicksMLC_Flies.SetVolumeAdjustment(volume)
-    RicksMLC_Flies.volumeAdjustment = volume / 10
-
-    RicksMLC_Flies.soundEmitter:setVolume(RicksMLC_Flies.soundHandle, RicksMLC_Flies.volumeAdjustment)
-end
-
 function RicksMLC_Flies.PlaySound(sound, soundSource)
     RicksMLC_Flies.soundEmitter = RicksMLC_Flies.soundEmitter or getPlayer():getEmitter()
     RicksMLC_Flies.soundEmitter:setPos(soundSource:getX(), soundSource:getY(), soundSource:getZ())
@@ -205,7 +198,7 @@ function RicksMLC_Flies.PlaySound(sound, soundSource)
     
     RicksMLC_Flies.soundHandle = RicksMLC_Flies.soundEmitter:playSound(sound)
     handle = RicksMLC_Flies.soundHandle
-    RicksMLC_Flies.soundEmitter:setVolume(RicksMLC_Flies.soundHandle, RicksMLC_Flies.volumeAdjustment) 
+    RicksMLC_Flies.soundEmitter:setVolume(RicksMLC_Flies.soundHandle, RicksMLC_FliesModOptions:GetFliesSoundVolume()) 
 
     -- DebugLog.log(DebugType.Mod, "PlaySound() " .. sound .. " " .. tostring(handle) )
 end

@@ -1,0 +1,8 @@
+-- Rick's MLC Flies Mod Options
+-- Encoding: UTF-8
+-- ModOptions prompts:
+
+UI_EN {
+	UI_RicksMLCFlies_Options_Volume = "Fly sound volume",
+	UI_RicksMLCFlies_Options_Volume_Tooltip = "Set the fly volume to soothe your maddness.  Yes, it does indeed go to 11",
+},

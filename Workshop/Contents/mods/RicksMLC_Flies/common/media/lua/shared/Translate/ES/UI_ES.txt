@@ -1,0 +1,7 @@
+-- Rick's MLC Flies
+-- Encoding: ANSI
+
+UI_ES {
+	UI_RicksMLCFlies_Options_Volume = "Volumen del sonido de la mosca",
+	UI_RicksMLCFlies_Options_Volume_Tooltip = "Ajusta el volumen del ventilador para calmar tu locura. Sí, de hecho llega a 11",
+},

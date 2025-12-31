@@ -1,0 +1,7 @@
+-- Rick's MLC Flies
+-- Chinese Simplified Translation - UTF-8
+
+UI_CN = {
+	UI_RicksMLCFlies_Options_Volume = "飞虫声音音量",
+	UI_RicksMLCFlies_Options_Volume_Tooltip = "将飞行音量调到可以舒缓你的疯狂。是的，它确实可以调到11",
+}
