@@ -188,34 +188,89 @@ function RicksMLC_Flies.CalcBodySmell(player)
     return totalBlood + totalDirt
 end
 
-RicksMLC_Flies.soundHandle = 0
+
+RicksMLC_Flies.soundHandle = nil
 RicksMLC_Flies.soundEmitter = nil
+RicksMLC_Flies.currentSound = nil
+RicksMLC_Flies.currentSource = nil
 function RicksMLC_Flies.PlaySound(sound, soundSource)
-    RicksMLC_Flies.soundEmitter = RicksMLC_Flies.soundEmitter or getPlayer():getEmitter()
+    if not RicksMLC_Flies.soundEmitter then
+        RicksMLC_Flies.soundEmitter = getWorld():getFreeEmitter(soundSource:getX(), soundSource:getY(), soundSource:getZ())
+        Events.OnTick.Remove(RicksMLC_Flies.OnTickHandler)
+        Events.OnTick.Add(RicksMLC_Flies.OnTickHandler)
+    end
+    RicksMLC_Flies.soundEmitter:setVolumeAll(RicksMLC_FliesModOptions:GetFliesSoundVolume()) 
     RicksMLC_Flies.soundEmitter:setPos(soundSource:getX(), soundSource:getY(), soundSource:getZ())
 
-    --if RicksMLC_Flies.soundEmitter:isPlaying(RicksMLC_Flies.soundHandle) then return end
-    
-    RicksMLC_Flies.soundHandle = RicksMLC_Flies.soundEmitter:playSound(sound)
-    handle = RicksMLC_Flies.soundHandle
-    RicksMLC_Flies.soundEmitter:setVolume(RicksMLC_Flies.soundHandle, RicksMLC_FliesModOptions:GetFliesSoundVolume()) 
+    if RicksMLC_Flies.soundEmitter:isPlaying(RicksMLC_Flies.soundHandle) then
+        return
+    end
+   
+    RicksMLC_Flies.soundHandle = RicksMLC_Flies.soundEmitter:playSound(sound, soundSource)
+    RicksMLC_Flies.currentSound = sound
+    RicksMLC_Flies.currentSource = soundSource
+end
 
-    -- DebugLog.log(DebugType.Mod, "PlaySound() " .. sound .. " " .. tostring(handle) )
+function RicksMLC_Flies.OnTickHandler()
+    if RicksMLC_Flies.soundEmitter then
+        if RicksMLC_Flies.soundHandle then
+            if RicksMLC_Flies.soundEmitter:isPlaying(RicksMLC_Flies.soundHandle) then
+                RicksMLC_Flies.soundEmitter:tick()
+                if not RicksMLC_Flies.soundEmitter:isPlaying(RicksMLC_Flies.soundHandle) then
+                    -- loop the sound
+                    RicksMLC_Flies.PlaySound(RicksMLC_Flies.currentSound, RicksMLC_Flies.currentSource)
+                end
+            else
+                -- loop the sound
+                RicksMLC_Flies.PlaySound(RicksMLC_Flies.currentSound, RicksMLC_Flies.currentSource)
+            end
+        else
+            Events.OnTick.Remove(RicksMLC_Flies.OnTickHandler)
+        end
+    end
+end
+
+function RicksMLC_Flies.StopSounds(player)
+    if player ~= getPlayer() then return end
+
+    if RicksMLC_Flies.soundEmitter then
+        RicksMLC_Flies.soundEmitter:stopAll()
+        if RicksMLC_Flies.soundEmitter:isEmpty() then
+            Events.OnTick.Remove(RicksMLC_Flies.OnTickHandler)
+            RicksMLC_Flies.soundHandle = nil
+            RicksMLC_Flies.soundEmitter = nil
+            RicksMLC_Flies.currentSound = nil
+            RicksMLC_Flies.currentSource = nil
+            return
+        end
+    end
+end
+
+function RicksMLC_Flies.PlayPlayerSound(sound, player)
+    -- This playGlobal is for testing local vs global.
+    local playGlobal = true -- Set this for testing local only sound.
+    if playGlobal then
+        -- playSound sends the play to all clients, so only update for the getPlayer()
+        if player == getPlayer() then
+            RicksMLC_Flies.PlaySound(sound, player)
+        end
+        return
+    end
 end
 
 function RicksMLC_Flies.UpdateFlies(player, playerID, fliesOn)
     if not fliesOn then
         RicksMLC_Flies.ClearFliesFromList(playerID)
+        RicksMLC_Flies.StopSounds(player)
         return
     end
     -- playSound sends the play to all clients, so only update for the getPlayer()
     if player:isSeatedInVehicle() then
-        if player == getPlayer() then
-            RicksMLC_Flies.PlaySound("RicksMLC_FliesInCar-lower", player)
-        end
+        RicksMLC_Flies.PlayPlayerSound("RicksMLC_FliesInCar-lower", player)
         RicksMLC_Flies.HideFlies(playerID)
         return
     end
+
     local square = player:getCell():getGridSquare(player:getX(), player:getY(), player:getZ())
     if not square then
         -- Just in case the player teleported and the square is not available yet.
@@ -230,11 +285,13 @@ function RicksMLC_Flies.UpdateFlies(player, playerID, fliesOn)
     if RicksMLC_Flies.currentFliesSquareList[playerID]:GetSquare() ~= square then
         RicksMLC_Flies.currentFliesSquareList[playerID]:ChangeSquare(square)
     end
+
     -- playSound sends the play to all clients, so only update for the getPlayer()
-    if player == getPlayer() then
-        --RicksMLC_Flies.currentFliesSquareList[playerID].square:playSound("RicksMLC_Flies02-lower")
-        RicksMLC_Flies.PlaySound("RicksMLC_Flies02-lower", RicksMLC_Flies.currentFliesSquareList[playerID].square)
-    end
+    -- if player == getPlayer() then
+    --     --RicksMLC_Flies.currentFliesSquareList[playerID].square:playSound("RicksMLC_Flies02-lower")
+    --     RicksMLC_Flies.PlaySound("RicksMLC_Flies02-lower", RicksMLC_Flies.currentFliesSquareList[playerID].square)
+    -- end
+    RicksMLC_Flies.PlayPlayerSound("RicksMLC_Flies-SplitTrack01", player)
 end
 
 function RicksMLC_Flies.SendUpdateSmellToServer()
@@ -326,8 +383,20 @@ function RicksMLC_Flies.ShowOtherPlayersFlies()
     end
 end
 
+function RicksMLC_Flies.InitSounds()
+    -- local gameSound = GameSounds.getOrCreateSound("RicksMLC_Flies02-lower")
+    -- if gameSound then
+    --     gameSound.loop = true
+    -- end
+    -- local gameSoundInCar = GameSounds.getOrCreateSound("RicksMLC_FliesInCar-lower")
+    -- if gameSoundInCar then
+    --     gameSoundInCar.loop = true
+    -- end
+end
+
 -- Use the first minute in-game to get the flies status of all other players.
 function RicksMLC_Flies.FirstEveryOneMinute()
+    RicksMLC_Flies.InitSounds()
     if isClient() or not isServer() then -- ie: is a MP client or stand-alone
         RicksMLC_Flies.currentFliesSquareList[getPlayer():getOnlineID()] = FliesInfo:new(getPlayer():getCurrentSquare())
         RicksMLC_Flies.UpdateMyFlies()
