@@ -8,7 +8,7 @@
             "type": "shell",
             "command": "xcopy",
             "args": [
-                "${env:USERPROFILE}\\Documents\\Ricks Mid Life Crisis\\ProjectZomboid Mods\\RicksMLC_Flies\\Workshop",
+                "${env:USERPROFILE}\\Documents\\Ricks Mid Life Crisis\\ProjectZomboid Mods\\RicksMLC_Flies\\Workshop Files",
                 "${env:USERPROFILE}\\Zomboid\\Workshop\\RicksMLC_Flies\\",
                 "/s",
                 "/e",
@@ -44,7 +44,7 @@
             "type": "shell",
             "command": "xcopy",
             "args": [
-                "${env:USERPROFILE}\\Documents\\Ricks Mid Life Crisis\\ProjectZomboid Mods\\RicksMLC_Flies\\Workshop",
+                "${env:USERPROFILE}\\Documents\\Ricks Mid Life Crisis\\ProjectZomboid Mods\\RicksMLC_Flies\\Workshop Files",
                 "${env:USERPROFILE}\\Zomboid\\Workshop\\RicksMLC_Flies",
                 "/s",
                 "/e",

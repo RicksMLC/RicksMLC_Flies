@@ -163,16 +163,16 @@ end
 
 function RicksMLC_Flies.CalcClothingSmell(player)
     local wornItems = player:getWornItems()
-    local totalDirtyness = 0
+    local totalDirtiness = 0
     local totalBloodyness = 0
     for i=0, wornItems:size() - 1 do
         local item = wornItems:getItemByIndex(i)
         if instanceof(item, "Clothing") then
-            totalDirtyness = totalDirtyness + item:getDirtyness()
+            totalDirtiness = totalDirtiness + item:getDirtiness()
         end
         totalBloodyness = totalBloodyness + item:getBloodLevel()
     end
-    return totalDirtyness + totalBloodyness
+    return totalDirtiness + totalBloodyness
 end
 
 function RicksMLC_Flies.CalcBodySmell(player)
